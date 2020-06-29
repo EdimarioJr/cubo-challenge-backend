@@ -1,13 +1,10 @@
 import express from "express";
+import userController from './controllers/userController'
 
 const routes = express.Router();
 
-routes.get("/", (req, res) => {
-  res.send("Puxando todos os usuarios!");
-});
+routes.get("/", userController.index);
 
-routes.post("/", (req, res) => {
-  res.send("Inserindo um usuário!");
-});
+routes.post("/", userController.create);
 
 export default routes;
