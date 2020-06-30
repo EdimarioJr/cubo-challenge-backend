@@ -1,5 +1,4 @@
 import Users from "../db/model/User";
-import User from "../db/model/User";
 
 const userController = {
   index: async function (req, res) {
