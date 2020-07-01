@@ -9,15 +9,14 @@ const userController = {
   },
 
   create: async function (req, res) {
-    const {first_name, last_name, participation} = req.body;
+    const { first_name, last_name, participation } = req.body;
     let nParticipation = Number(participation);
-    const newUser = new User({
+    const newUser = new Users({
       first_name,
       last_name,
       participation: nParticipation,
     });
     const retorno = await newUser.save();
-    console.log(retorno);
     return res.send(retorno);
   },
 };
