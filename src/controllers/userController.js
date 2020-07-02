@@ -19,6 +19,14 @@ const userController = {
     const retorno = await newUser.save();
     return res.send(retorno);
   },
+
+  destroy: async function (req, res) {
+    const id = String(req.params.id);
+    await Users.deleteOne({ id }, (err) => {
+      if (err) return res.send("Erro no delete:", err);
+      res.send("Usuário deletado com sucesso!")
+    });
+  },
 };
 
 export default userController;
