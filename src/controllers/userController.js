@@ -2,7 +2,10 @@ import Users from "../db/model/User";
 
 const userController = {
   index: async function (req, res) {
-    const { first_name, last_name } = req.query;
+    let { first_name, last_name } = req.query;
+    // faz uma busca case-insensitive, ou seja, foo = FOO = Foo
+    first_name = new RegExp(first_name, "i");
+    last_name = new RegExp(last_name, "i");
     const users = await Users.find(
       first_name && last_name ? { first_name, last_name } : {},
       (err) => {
