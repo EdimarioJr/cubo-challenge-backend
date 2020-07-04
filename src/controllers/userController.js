@@ -14,10 +14,19 @@ const userController = {
 
   create: async function (req, res) {
     const { first_name, last_name, participation } = req.body;
-    let nParticipation = Number(participation);
-    const newUser = new Users({
+    let newUser = {
       first_name,
       last_name,
+      participation,
+    };
+    // removendo espaços antes ou depois das Strings
+    Object.keys(newUser).forEach((prop) => {
+      prop.trim();
+    });
+    // forçando o participation a ser um Number, não importa oq venha do frontend
+    let nParticipation = Number(participation);
+    newUser = new Users({
+      ...newUser,
       participation: nParticipation,
     });
     const retorno = await newUser.save();
